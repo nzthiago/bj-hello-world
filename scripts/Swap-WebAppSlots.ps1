@@ -4,5 +4,5 @@ param(
     [string]$WebSiteName
 )
 
-Switch-AzureWebsiteSlot -Name $WebSiteName | Out-Null
+Switch-AzureWebsiteSlot -Name $WebSiteName -Force | Out-Null
 Write-Host "Swappet web app '$WebSiteName'"

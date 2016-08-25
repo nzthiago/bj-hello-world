@@ -42,7 +42,7 @@ public class Application
         }
         catch(Exception e)
         {
-            System.out.print(e.toString());
+            value = e.toString();
         }
         finally 
         {

@@ -12,11 +12,11 @@ $ResourceGroupName = $WebSite.ResourceGroup
 
 if($Slot)
 {
-    Stop-AzureWebsite -Name $WebSiteName -Slot $Slot | Out-Null
+    Stop-AzureRmWebAppSlot -Name $WebSiteName -ResourceGroupName $ResourceGroupName -Slot $Slot | Out-Null
     Write-Host "Stopped slot '$Slot' belonging to web app '$WebSiteName'"
 }
 else
 {
-    Stop-AzureWebsite -Name $WebSiteName | Out-Null
+    Stop-AzureRmWebApp -Name $WebSiteName -ResourceGroupName $ResourceGroupName | Out-Null
     Write-Host "Stopped web app '$WebSiteName'"
 }

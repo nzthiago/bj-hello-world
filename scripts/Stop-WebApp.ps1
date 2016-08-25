@@ -17,3 +17,6 @@ else
     Stop-AzureWebsite -Name $WebSiteName | Out-Null
     Write-Host "Stopped web app '$WebSiteName'"
 }
+
+#Sleep for 30 seconds to ensure site is stopped properly before build continues
+Start-Sleep -s 30

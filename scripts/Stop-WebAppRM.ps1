@@ -20,3 +20,6 @@ else
     Stop-AzureRmWebApp -Name $WebSiteName -ResourceGroupName $ResourceGroupName | Out-Null
     Write-Host "Stopped web app '$WebSiteName'"
 }
+
+#Sleep for 30 seconds to ensure site is stopped properly before build continues
+Start-Sleep -s 30

@@ -22,7 +22,7 @@ public class Application
     public String index(@RequestParam(value="key") String key)
     {
         if(key == null) {
-            key = "not sent";
+            key = "key not sent";
         }
         
         DatabaseReference d = FirebaseDatabase.getInstance().getReference();

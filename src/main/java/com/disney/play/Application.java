@@ -27,7 +27,7 @@ public class Application
         
         DatabaseReference d = FirebaseDatabase.getInstance().getReference();
         d.child("azureTest").setValue("helloWorld-key: [" + key + "]");
-        return "{\"id\":1,\"content\":\"Hello, World! at " + System.currentTimeMillis() + "\"}";
+        return "{\"id\":1,\"content\":\"Hello Disney World! at " + System.currentTimeMillis() + "\"}";
     }
 
     public static void main(String[] args) throws FileNotFoundException

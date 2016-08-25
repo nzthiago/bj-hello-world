@@ -22,12 +22,12 @@ public class Application
     public String index(@RequestParam(value="key") String key)
     {
         if(key == null) {
-            key = "no query param sent";
+            key = "not sent";
         }
         
         DatabaseReference d = FirebaseDatabase.getInstance().getReference();
         d.child("azureTest").setValue("helloWorld-key: [" + key + "]");
-        return "{\"id\":1,\"content\":\"Hello, World! at " + System.currentTimeMillis() + "\"}";
+        return "{\"id\":" + key + ",\"content\":\"Hello, World! at: " + System.currentTimeMillis() + "\"}";
     }
 
     public static void main(String[] args) throws FileNotFoundException

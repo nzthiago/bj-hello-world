@@ -22,4 +22,5 @@ else
 }
 
 #Sleep for 30 seconds to ensure site is stopped properly before build continues
+Write-Host "Sleeping for 30 seconds..."
 Start-Sleep -s 30

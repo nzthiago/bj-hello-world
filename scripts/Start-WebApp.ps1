@@ -7,9 +7,6 @@ param(
     [string]$Slot
 )
 
-$WebSite = Get-AzureRmWebApp -Name $WebSiteName
-$ResourceGroupName = $WebSite.ResourceGroup
-
 if($Slot)
 {
     Start-AzureWebsite -Name $WebSiteName -Slot $Slot | Out-Null

@@ -19,12 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Application
 {
     @RequestMapping("/")
-    public String index(@RequestParam(value="key") String key)
+    public String index(@RequestParam(value="key", defaultValue = "no key") String key)
     {
-        if(key == null) {
-            key = "key not sent";
-        }
-        
         DatabaseReference d = FirebaseDatabase.getInstance().getReference();
         d.child("azureTest").setValue("helloWorld-key: [" + key + "]");
         return "{\"id\":" + key + ",\"content\":\"Hello, World! at: " + System.currentTimeMillis() + "\"}";

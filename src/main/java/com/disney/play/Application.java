@@ -28,13 +28,26 @@ public class Application
         d.child("azureTest").setValue("helloWorld-key: [" + key + "]");
         
         /* In this line, replace <name> with your cache name: */
-        JedisShardInfo shardInfo = new JedisShardInfo("bj-hello-world.redis.cache.windows.net", 6380);
+        JedisShardInfo shardInfo = new JedisShardInfo("bj-hello-world.redis.cache.windows.net", 6379);
         shardInfo.setPassword("FpaDShz8Uj6frCAduCJuhQSlyPrz7//nCu1GD14+enU="); /* Use your access key. */
+
         Jedis jedis = new Jedis(shardInfo);
-        jedis.set("key", key);
-
-        String value = jedis.get("key");
-
+        
+        String value = "NOT-SET";
+        
+        try
+        {
+            jedis.set("key", key);
+            value = jedis.get("key");
+        }
+        catch(Exception e)
+        {
+            System.out.print(e.toString());
+        }
+        finally 
+        {
+            jedis.close();
+        }
         
         return "{\"redis\":" + value + ",\"content\":\"Hello, World! at: " + System.currentTimeMillis() + "\"}";
     }

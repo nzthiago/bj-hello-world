@@ -14,6 +14,9 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisShardInfo;
+
 @SpringBootApplication
 @RestController
 public class Application
@@ -23,7 +26,17 @@ public class Application
     {
         DatabaseReference d = FirebaseDatabase.getInstance().getReference();
         d.child("azureTest").setValue("helloWorld-key: [" + key + "]");
-        return "{\"id\":" + key + ",\"content\":\"Hello, World! at: " + System.currentTimeMillis() + "\"}";
+        
+        /* In this line, replace <name> with your cache name: */
+        JedisShardInfo shardInfo = new JedisShardInfo("bj-hello-world.redis.cache.windows.net", 6380);
+        shardInfo.setPassword("FpaDShz8Uj6frCAduCJuhQSlyPrz7//nCu1GD14+enU="); /* Use your access key. */
+        Jedis jedis = new Jedis(shardInfo);
+        jedis.set("key", key);
+
+        String value = jedis.get("key");
+
+        
+        return "{\"redis\":" + value + ",\"content\":\"Hello, World! at: " + System.currentTimeMillis() + "\"}";
     }
 
     public static void main(String[] args) throws FileNotFoundException

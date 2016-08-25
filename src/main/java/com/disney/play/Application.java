@@ -21,9 +21,13 @@ public class Application
     @RequestMapping("/")
     public String index(@RequestParam(value="key") String key)
     {
+        if(key == null) {
+            key = "no query param";
+        }
+        
         DatabaseReference d = FirebaseDatabase.getInstance().getReference();
         d.child("azureTest").setValue("helloWorld-key: [" + key + "]");
-        return "{\"id\":1,\"content\":\"Hello, World!\"}";
+        return "{\"id\":1,\"content\":\"Hello, World! at " + System.currentTimeMillis() + "\"}";
     }
 
     public static void main(String[] args) throws FileNotFoundException

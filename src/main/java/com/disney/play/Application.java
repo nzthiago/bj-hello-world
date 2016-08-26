@@ -60,7 +60,7 @@ public class Application
             value = jedis.get("key");
     
         
-        return "{\"redis\":" + value + ",\"content\":\"Hello, DisneyWorld! at: " + System.currentTimeMillis() + "\"}";
+        return "{\"redis\":" + value + ",\"content\":\"Hello, Disneyland! at: " + System.currentTimeMillis() + "\"}";
     }
 
     public static void main(String[] args) throws FileNotFoundException
